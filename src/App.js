@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
+import chatbot from './chatbotimage.png';
 import './App.css';
+import { ThemeProvider } from 'styled-components';
+import ChatbotIndex from "./components/ChatbotIndex";
+
 
 function App() {
+
+  const theme = {
+    background: '#f4f4f4',
+    fontFamily: `"Montserrat", sans-serif`,
+    headerBgColor: '#000',
+    headerFontColor: '#E7EDEE',
+    headerFontSize: '20px',
+    headerTitle: '10px',
+    botBubbleColor: '#DCDCDC',
+    userBubbleColor: '#000',
+    userFontColor: '#f4f4f4',
+    userFontSize: '5px',
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={chatbot} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+         React simple chat bot library
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://lucasbassetti.com.br/react-simple-chatbot/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React Simple Chatbot
         </a>
       </header>
+      <ThemeProvider theme={theme}><ChatbotIndex/></ThemeProvider>
     </div>
   );
 }
