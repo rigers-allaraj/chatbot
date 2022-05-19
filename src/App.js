@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import chatbot from './chatbotimage.png';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
-import ChatbotIndex from "./components/ChatbotIndex";
+import ChatbotIndex from "./components/ChatbotIndex.js";
 
 
 function App() {
+  const [ChatBot, setChatBot] = useState(<ChatbotIndex />);
+
+  useEffect(() => {
+    setChatBot(<ChatbotIndex/>);
+  });
+
 
   const theme = {
     background: '#f4f4f4',
@@ -35,7 +41,7 @@ function App() {
           Learn React Simple Chatbot
         </a>
       </header>
-      <ThemeProvider theme={theme}><ChatbotIndex/></ThemeProvider>
+      <ThemeProvider theme={theme}>{ ChatBot }</ThemeProvider>
     </div>
   );
 }
