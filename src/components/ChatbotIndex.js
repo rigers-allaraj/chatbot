@@ -143,17 +143,78 @@ const ChatBotIndex = () => {
             {
               value: 1,
               label: "Yes",
-              trigger: "BOT/intro-02",
+              trigger: "ID-04",
             },
             {
               value: 2,
               label: "No",
-              trigger: "BOT/intro",
+              trigger: "BOT/last",
+            }
+          ]
+        },
+
+        {
+          id: "ID-03",
+          options: [
+            {
+              value: 1,
+              label: "Yes",
+              trigger: "ID-04",
+            },
+            {
+              value: 2,
+              label: "No",
+              trigger: "BOT/last",
             }
           ]
         },
         {
-          id: "BOT/intro-02",
+          id: "ID-04",
+          message: `Nice  Do you want to learn about the emojipedia or chatbot?`,
+          trigger: "ID-05",
+        },
+
+        {
+          id: "ID-05",
+          options: [
+            {
+              value: 1,
+              label: "Emojipedia 🔥",
+              trigger: "ID-06",
+            },
+            {
+              value: 2,
+              label: "Chatbot 😎 ",
+              trigger: "ID-07",
+            }
+          ]
+        },
+        {
+          id: "ID-06",
+          // component: <Test />,   => You can create a component and use in that way
+          component: (
+            <div>
+              {" "}
+              <a
+                href='https://emojipedia.org/'
+                target='_blank'
+                style={{
+                  textDecoration: "none",
+                  outline: "none",
+                  color: "#003399",
+                }}
+                rel='noreferrer'>
+                {" "}
+                Learn Emojipedia 🚀
+              </a>{" "}
+            </div>
+          ),
+          trigger: "BOT/last-01",
+          // waitAction: true,
+        },
+
+        {
+          id: "ID-07",
           // component: <Test />,   => You can create a component and use in that way
           component: (
             <div>
@@ -168,15 +229,15 @@ const ChatBotIndex = () => {
                 }}
                 rel='noreferrer'>
                 {" "}
-                Learn React Simple Chatbot
+                Click here to learn react simple chatbot and I challenge you to write 4 numbers last one 7
               </a>{" "}
             </div>
           ),
           // waitAction: true,
-          trigger: "BOT/intro-03",
+          trigger: "ID-08",
         },
         {
-          id: "BOT/intro-03",
+          id: "ID-08",
           // component: <Test />,   => You can create a component and use in that way
           // waitAction: true,
           // message : "User text input",
@@ -186,20 +247,57 @@ const ChatBotIndex = () => {
               // value.match(
               //   /^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i
               // )
-              value.match(/^(\d{4})$/i)
+              value.match(/^(\d{3}7)$/i)
             ) {
               return true;
             } else {
-              return "Please enter a 4 digit number";
+              return "Please enter a 4 digits finished 7";
               //or only continue the next step  return true;
             }
           },
-          trigger: "BOT/intro-04",
+          trigger: "ID-09",
         },
         {
-          id: "BOT/intro-04",
+          id: "ID-09",
           message: ({ previousValue, steps }) =>
-            `Your number was ${steps["BOT/intro-03"].value} 😃`,
+            `Your number was ${steps["ID-08"].value} 😃`,
+          trigger: "ID-10",
+        },
+        {
+          id: "ID-10",
+          message: 'If you now know selectors, very easily you can learn Xpath at the link that i will attach above 💪',
+          trigger:"ID-11"
+        },
+        {
+          id: "ID-11",
+          component: (
+            <div>
+              {" "}
+              <a
+                href='https://devhints.io/xpath'
+                target='_blank'
+                style={{
+                  textDecoration: "none",
+                  outline: "none",
+                  color: "#003399",
+                }}
+                rel='noreferrer'>
+                {" "}
+                //xpath[contains(@id,"devhints")]
+              </a>{" "}
+            </div>
+          ),
+          end: true,
+        },
+        {
+          id: "BOT/last",
+          message: 'No problem! You know were i am if you need to learn this cool library. 👍',
+          end: true,
+        },
+        {
+          id: "BOT/last-01",
+          waitAction: true,
+          message: 'Now you know where to find the best emojies 🙌',
           end: true,
         },
       ]}

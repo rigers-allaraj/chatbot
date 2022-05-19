@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     setChatBot(<ChatbotIndex/>);
-  });
+  },[]);
 
 
   const theme = {
